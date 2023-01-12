@@ -369,8 +369,8 @@ class Times extends BinaryOperator {
 
   @override
   dynamic evaluate(EvaluationType type, ContextModel context) {
-    final dynamic firstEval = first.evaluate(type, context);
-    final dynamic secondEval = second.evaluate(type, context);
+    final dynamic firstEval = (first.evaluate(type, context) * 100000000).floor();
+    final dynamic secondEval = (second.evaluate(type, context) * 100000000).floor();
 
     if (type == EvaluationType.VECTOR) {
       if (secondEval is double) {
@@ -382,7 +382,7 @@ class Times extends BinaryOperator {
       }
     }
 
-    return firstEval * secondEval;
+    return firstEval * secondEval / 10000000000000000;
   }
 
   @override
